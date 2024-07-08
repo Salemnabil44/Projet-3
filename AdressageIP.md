@@ -61,12 +61,6 @@ Voici un plan d'adressage IP basé sur cette répartition:
 
 Les adresses restantes sont réservées pour l'infrastructure réseau et l'expansion future.
 
-
-
-
-
-
-
 ### Plan détaillé
 
 | Département                            | Plage d'adresses IP            |
@@ -83,7 +77,5 @@ Les adresses restantes sont réservées pour l'infrastructure réseau et l'expan
 | Ventes et Développement Commercial     | 192.168.10.226 - 192.168.10.255 |
 | Infrastructure réseau                  | 192.168.10.191 - 192.168.10.200 |
 | Serveurs et équipements critiques      | 192.168.10.201 - 192.168.10.210 |
-
-### Conclusion
 
 Ce plan d'adressage IP alloue suffisamment d'adresses IP pour chaque département en fonction de sa taille actuelle, tout en permettant une marge d'expansion future. Les plages d'adresses IP réservées pour l'infrastructure réseau et les serveurs garantissent une gestion ordonnée et sécurisée des équipements critiques.
