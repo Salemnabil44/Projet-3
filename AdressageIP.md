@@ -1,81 +1,97 @@
-### Plan d’adressage IP
-
-
-Le plan d'adressage IP a été attribuer en fonction de chaque département et du nombre d'employés tout en prévoyant une expansion future.
-
-#### Nombre d'employés par département
-
-1. **Ventes et Développement Commercial**: 46 employés
-2. **RH**: 24 employés
-3. **Direction Marketing**: 22 employés
-4. **Communication**: 20 employés
-5. **R&D**: 17 employés
-6. **Direction Financière**: 14 employés
-7. **DSI**: 12 employés
-8. **Services Généraux**: 12 employés
-9. **Direction Générale**: 8 employés
-10. **Service Juridique**: 8 employés
-
-
 ### Plan d'adressage IP
+Afin d'anticiper une expansion significative à l'avenir nous utiliseraons le réseau 192.168.0.0/16.  Un réseau /16 offre 65 536 adresses (dont 65 534 utilisables), ce qui est largement suffisant pour couvrir les besoins actuels et futurs et nous allons attribuer des sous-réseaux à chaque département.
 
-Voici un plan d'adressage IP basé sur cette répartition:
+#### Informations générales :
+- Réseau principal : 192.168.0.0/16
+- Total d'adresses disponibles : 65 534 (après exclusion de l'adresse de réseau et de diffusion)
 
-1. **Communication** (30 adresses réservées)
-   - Plage: 192.168.10.1 - 192.168.10.30
+### Sous-réseaux par département
 
-2. **Direction Financière** (30 adresses réservées)
-   - Plage: 192.168.10.31 - 192.168.10.60
+Pour garantir une organisation claire et permettre une expansion future significative, nous allons utiliser des sous-réseaux /24, ce qui donne 256 adresses par sous-réseau (254 utilisables).
 
-3. **Direction Générale** (20 adresses réservées)
-   - Plage: 192.168.10.61 - 192.168.10.80
+1. **Communication : 20 employés (prévoir expansion jusqu'à 100)**
+   - Sous-réseau : 192.168.1.0/24
+   - Adresses disponibles : 192.168.1.1 à 192.168.1.254
 
-4. **Direction Marketing** (30 adresses réservées)
-   - Plage: 192.168.10.81 - 192.168.10.110
+2. **Direction Financière : 14 employés (prévoir expansion jusqu'à 50)**
+   - Sous-réseau : 192.168.2.0/24
+   - Adresses disponibles : 192.168.2.1 à 192.168.2.254
 
-5. **DSI** (20 adresses réservées)
-   - Plage: 192.168.10.111 - 192.168.10.130
+3. **Direction Générale : 8 employés (prévoir expansion jusqu'à 30)**
+   - Sous-réseau : 192.168.3.0/24
+   - Adresses disponibles : 192.168.3.1 à 192.168.3.254
 
-6. **R&D** (25 adresses réservées)
-   - Plage: 192.168.10.131 - 192.168.10.155
+4. **Direction Marketing : 22 employés (prévoir expansion jusqu'à 100)**
+   - Sous-réseau : 192.168.4.0/24
+   - Adresses disponibles : 192.168.4.1 à 192.168.4.254
 
-7. **RH** (30 adresses réservées)
-   - Plage: 192.168.10.156 - 192.168.10.185
+5. **DSI : 12 employés (prévoir expansion jusqu'à 50)**
+   - Sous-réseau : 192.168.5.0/24
+   - Adresses disponibles : 192.168.5.1 à 192.168.5.254
 
-8. **Services Généraux** (20 adresses réservées)
-   - Plage: 192.168.10.186 - 192.168.10.205
+6. **R&D : 17 employés (prévoir expansion jusqu'à 100)**
+   - Sous-réseau : 192.168.6.0/24
+   - Adresses disponibles : 192.168.6.1 à 192.168.6.254
 
-9. **Service Juridique** (20 adresses réservées)
-   - Plage: 192.168.10.206 - 192.168.10.225
+7. **RH : 24 employés (prévoir expansion jusqu'à 100)**
+   - Sous-réseau : 192.168.7.0/24
+   - Adresses disponibles : 192.168.7.1 à 192.168.7.254
 
-10. **Ventes et Développement Commercial** (50 adresses réservées)
-    - Plage: 192.168.10.226 - 192.168.10.255
+8. **Services Généraux : 12 employés (prévoir expansion jusqu'à 50)**
+   - Sous-réseau : 192.168.8.0/24
+   - Adresses disponibles : 192.168.8.1 à 192.168.8.254
 
-### Réservations pour infrastructure et expansion future
+9. **Service Juridique : 8 employés (prévoir expansion jusqu'à 30)**
+   - Sous-réseau : 192.168.9.0/24
+   - Adresses disponibles : 192.168.9.1 à 192.168.9.254
 
-1. **Infrastructure réseau (routeurs, switchs, etc.)**
-   - Plage: 192.168.10.191 - 192.168.10.200
+10. **Ventes et Développement Commercial : 46 employés (prévoir expansion jusqu'à 200)**
+    - Sous-réseau : 192.168.10.0/24
+    - Adresses disponibles : 192.168.10.1 à 192.168.10.254
 
-2. **Serveurs et équipements critiques**
-   - Plage: 192.168.10.201 - 192.168.10.210
+### Configuration IP des matériels réseaux :
 
-Les adresses restantes sont réservées pour l'infrastructure réseau et l'expansion future.
+- **Routeur**
+  - Adresse IP : 192.168.0.1
 
-### Plan détaillé
+- **Switches**
+  - Switch 1 : 192.168.0.2
+  - Switch 2 : 192.168.0.3
 
-| Département                            | Plage d'adresses IP            |
-|----------------------------------------|---------------------------------|
-| Communication                          | 192.168.10.1 - 192.168.10.30    |
-| Direction Financière                   | 192.168.10.31 - 192.168.10.60   |
-| Direction Générale                     | 192.168.10.61 - 192.168.10.80   |
-| Direction Marketing                    | 192.168.10.81 - 192.168.10.110  |
-| DSI                                    | 192.168.10.111 - 192.168.10.130 |
-| R&D                                    | 192.168.10.131 - 192.168.10.155 |
-| RH                                     | 192.168.10.156 - 192.168.10.185 |
-| Services Généraux                      | 192.168.10.186 - 192.168.10.205 |
-| Service Juridique                      | 192.168.10.206 - 192.168.10.225 |
-| Ventes et Développement Commercial     | 192.168.10.226 - 192.168.10.255 |
-| Infrastructure réseau                  | 192.168.10.191 - 192.168.10.200 |
-| Serveurs et équipements critiques      | 192.168.10.201 - 192.168.10.210 |
+- **Points d'accès Wi-Fi**
+  - Point d'accès 1 : 192.168.0.4
+  - Point d'accès 2 : 192.168.0.5
 
-Ce plan d'adressage IP alloue suffisamment d'adresses IP pour chaque département en fonction de sa taille actuelle, tout en permettant une marge d'expansion future. Les plages d'adresses IP réservées pour l'infrastructure réseau et les serveurs garantissent une gestion ordonnée et sécurisée des équipements critiques.
+- **Serveurs**
+  - Serveur DHCP : 192.168.0.6
+  - Serveur DNS : 192.168.0.7
+  - Serveur de fichiers : 192.168.0.8
+
+### Réserve pour expansion future :
+
+Nous avons attribué des sous-réseaux /24 à chaque département, offrant une grande capacité d'expansion. De plus, il reste de nombreux sous-réseaux disponibles pour de nouveaux départements ou une expansion future :
+
+- **Expansion future**
+  - Sous-réseaux disponibles : 192.168.11.0/24 à 192.168.255.0/24
+
+### Résumé des adresses IP par département avec plan d'expansion future :
+
+- **Communication** : 192.168.1.1 - 192.168.1.254
+- **Direction Financière** : 192.168.2.1 - 192.168.2.254
+- **Direction Générale** : 192.168.3.1 - 192.168.3.254
+- **Direction Marketing** : 192.168.4.1 - 192.168.4.254
+- **DSI** : 192.168.5.1 - 192.168.5.254
+- **R&D** : 192.168.6.1 - 192.168.6.254
+- **RH** : 192.168.7.1 - 192.168.7.254
+- **Services Généraux** : 192.168.8.1 - 192.168.8.254
+- **Service Juridique** : 192.168.9.1 - 192.168.9.254
+- **Ventes et Développement Commercial** : 192.168.10.1 - 192.168.10.254
+
+### Adresses pour les équipements réseau :
+
+- **Routeur** : 192.168.0.1
+- **Switches** : 192.168.0.2, 192.168.0.3
+- **Points d'accès Wi-Fi** : 192.168.0.4, 192.168.0.5
+- **Serveurs** : 192.168.0.6 - 192.168.0.8
+
+Ce plan d'adressage IP en /16 assure que chaque département dispose d'une plage d'adresses IP suffisante pour ses besoins actuels et futurs, tout en laissant de la place pour des équipements réseau et des extensions futures importantes.
