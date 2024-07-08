@@ -58,12 +58,12 @@ Pour garantir une organisation claire et permettre une expansion future signific
   - Switch 1 : 192.168.0.2
   - 
 - **Points d'accès Wi-Fi**
-  - Point d'accès 1 : 192.168.0.4
+  - Point d'accès 1 : 192.168.0.3
 
 - **Serveurs**
-  - Serveur DHCP : 192.168.0.6
-  - Serveur DNS : 192.168.0.7
-  - Serveur de fichiers : 192.168.0.8
+  - Serveur DHCP : 192.168.0.4
+  - Serveur DNS : 192.168.0.5
+  - Serveur de fichiers : 192.168.0.6
 
 ### Réserve pour expansion future :
 
@@ -88,8 +88,8 @@ Nous avons attribué des sous-réseaux /24 à chaque département, offrant une g
 ### Adresses pour les équipements réseau :
 
 - **Routeur** : 192.168.0.1
-- **Switches** : 192.168.0.2, 192.168.0.3
-- **Points d'accès Wi-Fi** : 192.168.0.4, 192.168.0.5
-- **Serveurs** : 192.168.0.6 - 192.168.0.8
+- **Switches** : 192.168.0.2
+- **Points d'accès Wi-Fi** : 192.168.0.3
+- **Serveurs** : 192.168.0.4 - 192.168.0.6
 
 Ce plan d'adressage IP en /16 assure que chaque département dispose d'une plage d'adresses IP suffisante pour ses besoins actuels et futurs, tout en laissant de la place pour des équipements réseau et des extensions futures importantes.
