@@ -56,11 +56,9 @@ Pour garantir une organisation claire et permettre une expansion future signific
 
 - **Switches**
   - Switch 1 : 192.168.0.2
-  - Switch 2 : 192.168.0.3
-
+  - 
 - **Points d'accès Wi-Fi**
   - Point d'accès 1 : 192.168.0.4
-  - Point d'accès 2 : 192.168.0.5
 
 - **Serveurs**
   - Serveur DHCP : 192.168.0.6
