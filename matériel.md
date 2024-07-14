@@ -1,11 +1,19 @@
 ## Liste matériel :
+
 Routeur : 1x Cisco ISR 4331
+
 Switch principal (L3) : 1x Cisco Catalyst 3650
+
 Points d'accès Wi-Fi : 1x Cisco Aironet 2802i
+
 Serveurs : 3x Cisco UCS C220 M5
+
 Switches de distribution : 10x Cisco Catalyst 3850
+
 Switches d'accès : 10x Cisco Catalyst 2960-X
+
 Firewall : 1x Cisco ASA 5506-X
+
 Contrôleur sans fil : 1x Cisco 5520 Wireless Controller
 
 ## Note sur le câblage et l'infrastructure
