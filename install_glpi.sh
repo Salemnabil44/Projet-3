@@ -1,64 +1,85 @@
+Fichier de configuration (config.ini)
+# config.ini
+DB_NAME=glpi
+DB_USER=glpi_user
+DB_PASSWORD=securepassword
+DB_HOST=localhost
+GLPI_VERSION=10.0.3
+WEB_ROOT=/var/www/html
+
+
+Script Bash (install_glpi.sh)
 #!/bin/bash
 
-# Variables
-DB_NAME="glpi"
-DB_USER="glpiuser"
-DB_PASS="yourpassword"
-GLPI_VERSION="9.5.4"
-WEB_ROOT="/var/www/html"
+# Chargement du fichier de configuration
+CONFIG_FILE="config.ini"
 
-# Mise à jour du système
-sudo apt update && sudo apt upgrade -y
+if [[ ! -f "$CONFIG_FILE" ]]; then
+    echo "Le fichier de configuration $CONFIG_FILE est introuvable."
+    exit 1
+fi
 
-# Installation des dépendances
-sudo apt install -y apache2 mariadb-server mariadb-client php php-mysql php-xml php-curl php-gd php-imap php-ldap php-apcu php-intl php-zip wget unzip
+# Lire le fichier de configuration
+source "$CONFIG_FILE"
 
-# Démarrage et activation des services Apache et MariaDB
-sudo systemctl start apache2
-sudo systemctl enable apache2
-sudo systemctl start mariadb
-sudo systemctl enable mariadb
+# Mettre à jour le système et installer les dépendances
+echo "Mise à jour du système et installation des dépendances..."
+sudo apt-get update
+sudo apt-get install -y apache2 mariadb-server php php-mysql php-xml php-curl php-gd php-mbstring php-zip wget unzip
 
-# Configuration de la base de données MariaDB
-sudo mysql -u root -e "CREATE DATABASE $DB_NAME CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
-sudo mysql -u root -e "CREATE USER '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PASS';"
-sudo mysql -u root -e "GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'localhost';"
-sudo mysql -u root -e "FLUSH PRIVILEGES;"
+# Télécharger et extraire GLPI
+echo "Téléchargement de GLPI version $GLPI_VERSION..."
+wget "https://github.com/glpi-project/glpi/releases/download/$GLPI_VERSION/glpi-$GLPI_VERSION.tgz"
+tar -xzf "glpi-$GLPI_VERSION.tgz"
 
-# Téléchargement et installation de GLPI
-cd /tmp
-wget https://github.com/glpi-project/glpi/releases/download/$GLPI_VERSION/glpi-$GLPI_VERSION.tgz
-tar -xzf glpi-$GLPI_VERSION.tgz
-sudo mv glpi $WEB_ROOT/
+# Déplacer GLPI dans le répertoire web
+echo "Déplacement de GLPI vers $WEB_ROOT/glpi..."
+sudo mv "glpi" "$WEB_ROOT/glpi"
+sudo chown -R www-data:www-data "$WEB_ROOT/glpi"
 
-# Permissions
-sudo chown -R www-data:www-data $WEB_ROOT/glpi
-sudo chmod -R 755 $WEB_ROOT/glpi
+# Configurer la base de données
+echo "Configuration de la base de données..."
+sudo mysql -e "CREATE DATABASE $DB_NAME;"
+sudo mysql -e "CREATE USER '$DB_USER'@'$DB_HOST' IDENTIFIED BY '$DB_PASSWORD';"
+sudo mysql -e "GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'$DB_HOST';"
+sudo mysql -e "FLUSH PRIVILEGES;"
 
-# Configuration d'Apache pour GLPI
-sudo bash -c 'cat > /etc/apache2/sites-available/glpi.conf << EOF
+# Configuration d'Apache
+echo "Configuration d'Apache..."
+APACHE_CONFIG="
 <VirtualHost *:80>
-    ServerAdmin admin@example.com
-    DocumentRoot /var/www/html/glpi
+    ServerAdmin webmaster@localhost
+    DocumentRoot $WEB_ROOT/glpi
 
-    <Directory /var/www/html/glpi>
-        Options FollowSymlinks
+    <Directory $WEB_ROOT/glpi>
+        Options FollowSymLinks
         AllowOverride All
         Require all granted
     </Directory>
 
-    ErrorLog \${APACHE_LOG_DIR}/glpi_error.log
-    CustomLog \${APACHE_LOG_DIR}/glpi_access.log combined
+    ErrorLog \${APACHE_LOG_DIR}/error.log
+    CustomLog \${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
-EOF'
+"
 
-# Activation du site GLPI et des modules nécessaires
+echo "$APACHE_CONFIG" | sudo tee /etc/apache2/sites-available/glpi.conf
+
+# Activer le site et les modules Apache nécessaires
 sudo a2ensite glpi
 sudo a2enmod rewrite
+
+# Redémarrer Apache pour appliquer les changements
+echo "Redémarrage d'Apache..."
 sudo systemctl restart apache2
 
-# Nettoyage
-rm -rf /tmp/glpi-$GLPI_VERSION.tgz
+echo "Installation de GLPI terminée. Accédez à http://localhost/glpi pour terminer l'installation via l'interface web."
 
-# Message de fin
-echo "Installation de GLPI terminée. Accédez à l'interface web pour finaliser la configuration : http://<votre-serveur>/glpi"
+
+Utilisation
+Créez un fichier config.ini avec les paramètres souhaités.
+Exécutez le script Bash avec les permissions nécessaires :
+
+sudo chmod +x install_glpi.sh
+sudo ./install_glpi.sh
+
+ATTENTION : Le fichier config.ini doit être enregistré dans le même répertoire que le script install_glpi.sh. Le script est conçu pour lire ce fichier de configuration dans son répertoire de travail actuel.
