@@ -1,0 +1,20 @@
+J'ai besoin que tu me rédiges un script powershell pour créer des GPO sur Active Directory :
+
+GPO de sécurité - Création de 10 GPO dans la liste ci-dessous :
+	1. Politique de mot de passe (complexité, longueur, etc.)
+	2. Verrouillage de compte (blocage de l'accès à la session après quelques erreur de mot de passe)
+	3. Restriction d'installation de logiciel pour les utilisateurs non-administrateurs
+	4. Gestion de Windows update (heure, délai avant installation, etc.)
+	5. Blocage de l'accès à la base de registre
+	6. Blocage complet ou partiel au panneau de configuration
+	7. Restriction des périphériques amovible
+	8. Gestion d'un compte du domaine qui est administrateur local des machines
+	9. Gestion du pare-feu
+	10. Écran de veille avec mot de passe en sortie
+
+GPO standard - Création de 5 GPO dans la liste ci-dessous :
+	1. Fond d'écran
+	2. Mappage de lecteurs
+	3. Gestion de l'alimentation
+	4. Déploiement (publication) de logiciels
+	5. Redirection de dossiers (Documents, Bureau, etc.)
