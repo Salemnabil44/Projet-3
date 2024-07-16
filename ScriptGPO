@@ -1,0 +1,81 @@
+script PowerShell pour créer les GPO sur Active Directory. 
+
+```powershell
+# Import the GroupPolicy module
+Import-Module GroupPolicy
+
+# Function to create a GPO and link it to a specified OU
+function Create-And-Link-GPO {
+    param (
+        [string]$GpoName,
+        [string]$OuDn
+    )
+    $gpo = New-GPO -Name $GpoName
+    New-GPLink -Name $GpoName -Target $OuDn
+}
+
+# Specify the OU Distinguished Name where the GPOs will be linked
+$ouDn = "OU=YourOU,DC=yourdomain,DC=com"
+
+# Security GPOs
+$securityGpoNames = @(
+    "Politique de mot de passe",
+    "Verrouillage de compte",
+    "Restriction d'installation de logiciel",
+    "Gestion de Windows update",
+    "Blocage de l'accès à la base de registre",
+    "Blocage au panneau de configuration",
+    "Restriction des périphériques amovible",
+    "Gestion d'un compte du domaine",
+    "Gestion du pare-feu",
+    "Écran de veille avec mot de passe"
+)
+
+# Standard GPOs
+$standardGpoNames = @(
+    "Fond d'écran",
+    "Mappage de lecteurs",
+    "Gestion de l'alimentation",
+    "Déploiement de logiciels",
+    "Redirection de dossiers"
+)
+
+# Create and link security GPOs
+foreach ($gpoName in $securityGpoNames) {
+    Write-Host "Creating and linking GPO: $gpoName"
+    Create-And-Link-GPO -GpoName $gpoName -OuDn $ouDn
+}
+
+# Create and link standard GPOs
+foreach ($gpoName in $standardGpoNames) {
+    Write-Host "Creating and linking GPO: $gpoName"
+    Create-And-Link-GPO -GpoName $gpoName -OuDn $ouDn
+}
+
+Write-Host "All GPOs created and linked successfully."
+```
+
+Ce script crée et lie les GPO à l'unité organisationnelle (OU) spécifiée. Vous devez remplacer `OU=YourOU,DC=yourdomain,DC=com` par le DN de votre OU cible. 
+
+Chaque GPO sera créé et lié à cette OU, mais vous devrez configurer manuellement les paramètres de chaque GPO en fonction des besoins spécifiques.
+
+Voici des indications pour configurer certains paramètres GPO courants via PowerShell :
+
+### Politique de mot de passe
+```powershell
+# Example for setting password policy
+$gpo = Get-GPO -Name "Politique de mot de passe"
+Set-GPRegistryValue -Name "Politique de mot de passe" -Key "HKLM\System\CurrentControlSet\Services\Netlogon\Parameters" -ValueName "MinimumPasswordLength" -Value 12
+Set-GPRegistryValue -Name "Politique de mot de passe" -Key "HKLM\System\CurrentControlSet\Services\Netlogon\Parameters" -ValueName "PasswordComplexity" -Value 1
+```
+
+### Verrouillage de compte
+```powershell
+# Example for setting account lockout policy
+$gpo = Get-GPO -Name "Verrouillage de compte"
+Set-GPRegistryValue -Name "Verrouillage de compte" -Key "HKLM\System\CurrentControlSet\Services\Netlogon\Parameters" -ValueName "LockoutBadCount" -Value 3
+```
+
+Pour les autres paramètres, vous pouvez utiliser des commandes similaires en fonction des clés de registre ou des paramètres de sécurité correspondants. Les paramètres plus complexes peuvent nécessiter l'importation de modèles administratifs (ADMX) ou l'utilisation de scripts supplémentaires.
+
+Assurez-vous d'avoir les permissions appropriées pour créer et gérer les GPO dans votre domaine.
