@@ -1,0 +1,50 @@
+Pour créer une stratégie de groupe (GPO) qui applique un fond d'écran spécifique à un département sur Active Directory, voici les étapes détaillées :
+
+### Pré-requis
+- Avoir les droits administratifs sur le contrôleur de domaine.
+- Avoir l'outil de gestion des stratégies de groupe (Gestion des stratégies de groupe) installé.
+- Disposer du fichier image du fond d'écran à appliquer, et avoir un emplacement réseau accessible pour le stocker.
+
+### Étapes
+
+1. **Préparer le fichier du fond d'écran :**
+   - Assurez-vous que le fichier image du fond d'écran est stocké sur un partage réseau accessible par tous les utilisateurs du département.
+   - Notez le chemin UNC du fichier, par exemple : `\\Serveur\Partage\Images\fond_decran.jpg`.
+
+2. **Ouvrir la console de gestion des stratégies de groupe :**
+   - Sur le contrôleur de domaine, ouvrez la "Console de gestion des stratégies de groupe" (GPMC). Vous pouvez le faire en tapant `gpmc.msc` dans la boîte de dialogue Exécuter (Win + R).
+
+3. **Créer une nouvelle GPO :**
+   - Dans le volet de gauche, trouvez le domaine ou l'unité d'organisation (OU) correspondant au département où vous voulez appliquer le fond d'écran.
+   - Faites un clic droit sur le domaine ou l'OU et sélectionnez "Créer un objet de stratégie de groupe dans ce domaine, et le lier ici..."
+   - Donnez un nom à la GPO, par exemple "Fond d'écran Département" et cliquez sur OK.
+
+4. **Éditer la GPO :**
+   - Faites un clic droit sur la GPO nouvellement créée et sélectionnez "Modifier".
+
+5. **Configurer les paramètres de la GPO :**
+   - Dans l'éditeur de gestion des stratégies de groupe, naviguez jusqu'à :
+     `Configuration utilisateur` -> `Stratégies` -> `Modèles d'administration` -> `Bureau` -> `Bureau`.
+   - Double-cliquez sur "Papier peint du bureau".
+   - Dans la fenêtre qui s'ouvre, sélectionnez "Activé".
+   - Dans le champ "Nom du papier peint", entrez le chemin UNC du fichier de l'image, par exemple `\\Serveur\Partage\Images\fond_decran.jpg`.
+   - Dans le champ "Style du papier peint", choisissez le style d'affichage souhaité (Par exemple : "Étendu" pour étirer l'image sur tout l'écran).
+   - Cliquez sur "Appliquer" et "OK".
+
+6. **Configurer les permissions du partage réseau (optionnel mais recommandé) :**
+   - Assurez-vous que les utilisateurs du département ont les permissions de lecture sur le partage réseau où est stocké le fichier image.
+
+7. **Appliquer la GPO :**
+   - Fermez l'éditeur de gestion des stratégies de groupe.
+   - Assurez-vous que la GPO est liée à l'OU correspondant au département.
+
+8. **Forcer la mise à jour de la GPO :**
+   - Pour que les changements prennent effet immédiatement, vous pouvez forcer la mise à jour de la stratégie de groupe en utilisant la commande suivante sur les clients ou via une commande distante :
+     ```sh
+     gpupdate /force
+     ```
+
+### Vérification
+- Connectez-vous à un poste client appartenant au département et vérifiez que le fond d'écran a été appliqué conformément à la GPO.
+
+En suivant ces étapes, vous aurez configuré une GPO qui applique un fond d'écran spécifique à un département sur les machines de votre domaine Active Directory.
