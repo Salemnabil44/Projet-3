@@ -1,5 +1,7 @@
 # Guide d'Installation et de Configuration de VyOS
 
+VyOS est un système d'exploitation basé sur Linux qui agit comme un routeur logiciel. Il est utilisé pour créer des appliances de réseau comme des routeurs, des pare-feu et des VPN. 
+
 ## Pré-requis
 - Un ordinateur ou un serveur compatible x86_64
 - Une connexion Internet pour télécharger l'image ISO de VyOS
