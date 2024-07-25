@@ -1,0 +1,101 @@
+La télémétrie réseau est essentielle pour maintenir la santé et la performance d'un réseau. Elle permet aux administrateurs de surveiller, analyser et optimiser les infrastructures réseau de manière proactive, améliorant ainsi la fiabilité, la sécurité et l'efficacité globale du réseau.
+
+
+
+
+Pour installer un programme de télémétrie sur un serveur, vous devez suivre quelques étapes générales. Voici un guide de base pour installer Prometheus, un des outils de télémétrie les plus populaires :
+
+### Étape 1 : Pré-requis
+- Un serveur avec un système d'exploitation basé sur Linux (Ubuntu, CentOS, etc.).
+- Accès administrateur au serveur.
+
+### Étape 2 : Installer Prometheus
+
+#### Pour Ubuntu / Debian
+1. **Mettre à jour le système :**
+    ```sh
+    sudo apt-get update
+    sudo apt-get upgrade
+    ```
+
+2. **Créer un utilisateur pour Prometheus :**
+    ```sh
+    sudo useradd --no-create-home --shell /bin/false prometheus
+    ```
+
+3. **Télécharger Prometheus :**
+    ```sh
+    cd /tmp
+    wget https://github.com/prometheus/prometheus/releases/download/v2.31.1/prometheus-2.31.1.linux-amd64.tar.gz
+    tar -xvzf prometheus-2.31.1.linux-amd64.tar.gz
+    cd prometheus-2.31.1.linux-amd64
+    ```
+
+4. **Déplacer les fichiers et attribuer les droits :**
+    ```sh
+    sudo mv prometheus /usr/local/bin/
+    sudo mv promtool /usr/local/bin/
+    sudo mkdir /etc/prometheus
+    sudo mkdir /var/lib/prometheus
+    sudo mv consoles /etc/prometheus
+    sudo mv console_libraries /etc/prometheus
+    sudo mv prometheus.yml /etc/prometheus
+    sudo chown -R prometheus:prometheus /etc/prometheus /var/lib/prometheus
+    ```
+
+5. **Créer un service systemd pour Prometheus :**
+    ```sh
+    sudo nano /etc/systemd/system/prometheus.service
+    ```
+
+    Ajouter le contenu suivant dans le fichier :
+    ```ini
+    [Unit]
+    Description=Prometheus
+    Wants=network-online.target
+    After=network-online.target
+
+    [Service]
+    User=prometheus
+    Group=prometheus
+    Type=simple
+    ExecStart=/usr/local/bin/prometheus \
+      --config.file /etc/prometheus/prometheus.yml \
+      --storage.tsdb.path /var/lib/prometheus/ \
+      --web.console.templates=/etc/prometheus/consoles \
+      --web.console.libraries=/etc/prometheus/console_libraries
+
+    [Install]
+    WantedBy=multi-user.target
+    ```
+
+6. **Recharger systemd et démarrer Prometheus :**
+    ```sh
+    sudo systemctl daemon-reload
+    sudo systemctl start prometheus
+    sudo systemctl enable prometheus
+    ```
+
+### Étape 3 : Vérifier l'installation
+
+- **Accéder à l'interface web de Prometheus :**
+    Ouvrez un navigateur web et accédez à l'adresse suivante : `http://<adresse_ip_du_serveur>:9090`
+
+### Étape 4 : Configurer les cibles de télémétrie
+
+- Éditez le fichier `prometheus.yml` pour ajouter les cibles que vous souhaitez surveiller. Voici un exemple de configuration pour surveiller un serveur web :
+    ```yaml
+    scrape_configs:
+      - job_name: 'my_web_server'
+        static_configs:
+          - targets: ['localhost:9100']
+    ```
+
+- **Redémarrer Prometheus pour appliquer les modifications :**
+    ```sh
+    sudo systemctl restart prometheus
+    ```
+
+### Conclusion
+
+Vous avez maintenant installé et configuré Prometheus pour la télémétrie sur votre serveur. Vous pouvez étendre cette configuration pour inclure d'autres outils et exporter des métriques à partir d'autres systèmes ou applications.
