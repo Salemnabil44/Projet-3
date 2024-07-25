@@ -1,0 +1,39 @@
+Pour créer une stratégie de groupe (GPO) qui bloque l'accès à la base de registre sur Active Directory, voici les étapes détaillées en français :
+
+### Pré-requis
+- Avoir les droits administratifs sur le contrôleur de domaine.
+- Avoir l'outil de gestion des stratégies de groupe (Gestion des stratégies de groupe) installé.
+
+### Étapes
+
+1. **Ouvrir la console de gestion des stratégies de groupe :**
+   - Sur le contrôleur de domaine, ouvrez la "Console de gestion des stratégies de groupe" (GPMC). Vous pouvez le faire en tapant `gpmc.msc` dans la boîte de dialogue Exécuter (Win + R).
+
+2. **Créer une nouvelle GPO :**
+   - Dans le volet de gauche, trouvez le domaine ou l'unité d'organisation (OU) où vous voulez appliquer la GPO.
+   - Faites un clic droit sur le domaine ou l'OU et sélectionnez "Créer un objet de stratégie de groupe dans ce domaine, et le lier ici..."
+   - Donnez un nom à la GPO, par exemple "Blocage Accès Base de Registre" et cliquez sur OK.
+
+3. **Éditer la GPO :**
+   - Faites un clic droit sur la GPO nouvellement créée et sélectionnez "Modifier".
+
+4. **Configurer les paramètres de la GPO :**
+   - Dans l'éditeur de gestion des stratégies de groupe, naviguez jusqu'à :
+     `Configuration utilisateur` -> `Stratégies` -> `Modèles d'administration` -> `Système`.
+   - Double-cliquez sur "Interdire l'accès aux outils de modification du Registre".
+   - Dans la fenêtre qui s'ouvre, sélectionnez "Activé" puis cliquez sur "Appliquer" et "OK".
+
+5. **Appliquer la GPO :**
+   - Fermez l'éditeur de gestion des stratégies de groupe.
+   - Assurez-vous que la GPO est liée à l'OU ou au domaine approprié.
+
+6. **Forcer la mise à jour de la GPO :**
+   - Pour que les changements prennent effet immédiatement, vous pouvez forcer la mise à jour de la stratégie de groupe en utilisant la commande suivante sur les clients ou via une commande distante :
+     ```sh
+     gpupdate /force
+     ```
+
+### Vérification
+- Connectez-vous à un poste client et essayez d'ouvrir l'éditeur du Registre (regedit) pour vérifier que l'accès est bien bloqué.
+
+En suivant ces étapes, vous aurez configuré une GPO qui bloque l'accès à la base de registre sur les machines de votre domaine Active Directory.
