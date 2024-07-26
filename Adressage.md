@@ -68,6 +68,7 @@ Adresses disponibles : 192.168.10.1 à 192.168.10.254
 Gateway : 192.168.10.1   
 Adressage des équipements réseau (IPv4)   
 Points d'accès Wi-Fi : 192.168.0.3   
+
 Serveurs :   
 Serveur DHCP : 192.168.0.4   
 Serveur DNS : 192.168.0.5   
