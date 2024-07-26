@@ -63,15 +63,15 @@ Adresses disponibles : 192.168.9.1 à 192.168.9.254
 Gateway : 192.168.9.1
 Ventes et Développement Commercial
 
-Sous-réseau : 192.168.10.0/24
-Adresses disponibles : 192.168.10.1 à 192.168.10.254
-Gateway : 192.168.10.1
-Adressage des équipements réseau (IPv4)
-Points d'accès Wi-Fi : 192.168.0.3
-Serveurs :
-Serveur DHCP : 192.168.0.4
-Serveur DNS : 192.168.0.5
-Serveur de fichiers : 192.168.0.6
+Sous-réseau : 192.168.10.0/24    
+Adresses disponibles : 192.168.10.1 à 192.168.10.254   
+Gateway : 192.168.10.1   
+Adressage des équipements réseau (IPv4)   
+Points d'accès Wi-Fi : 192.168.0.3   
+Serveurs :   
+Serveur DHCP : 192.168.0.4   
+Serveur DNS : 192.168.0.5   
+Serveur de fichiers : 192.168.0.6    
 
 
 ### Plan d'adressage IPv6
