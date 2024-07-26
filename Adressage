@@ -11,61 +11,64 @@ Sous-réseaux par département
 Pour garantir une organisation claire et permettre une expansion future significative, nous allons utiliser des sous-réseaux /24, ce qui donne 256 adresses par sous-réseau (254 utilisables).
 
 ### Plan d'adressage IP (IPv4)
-Réseau principal : 192.168.0.0/16
 
+Réseau principal : 192.168.0.0/16
 Routeur : 192.168.0.1
 Switch 1 : 192.168.0.2 (par exemple, Switch Cisco 3650)
 Sous-réseaux par département (IPv4)
-Communication
 
+Communication
 Sous-réseau : 192.168.1.0/24
 Adresses disponibles : 192.168.1.1 à 192.168.1.254
 Gateway : 192.168.1.1
-Direction Financière
 
+Direction Financière
 Sous-réseau : 192.168.2.0/24
 Adresses disponibles : 192.168.2.1 à 192.168.2.254
 Gateway : 192.168.2.1
-Direction Générale
 
+Direction Générale
 Sous-réseau : 192.168.3.0/24
 Adresses disponibles : 192.168.3.1 à 192.168.3.254
 Gateway : 192.168.3.1
-Direction Marketing
 
+Direction Marketing
 Sous-réseau : 192.168.4.0/24
 Adresses disponibles : 192.168.4.1 à 192.168.4.254
 Gateway : 192.168.4.1
-DSI
 
+DSI
 Sous-réseau : 192.168.5.0/24
 Adresses disponibles : 192.168.5.1 à 192.168.5.254
 Gateway : 192.168.5.1
-R&D
 
+R&D
 Sous-réseau : 192.168.6.0/24
 Adresses disponibles : 192.168.6.1 à 192.168.6.254
 Gateway : 192.168.6.1
-RH
 
+RH
 Sous-réseau : 192.168.7.0/24
 Adresses disponibles : 192.168.7.1 à 192.168.7.254
 Gateway : 192.168.7.1
-Services Généraux
 
+
+
+Services Généraux
 Sous-réseau : 192.168.8.0/24
 Adresses disponibles : 192.168.8.1 à 192.168.8.254
 Gateway : 192.168.8.1
-Service Juridique
 
+Service Juridique
 Sous-réseau : 192.168.9.0/24
 Adresses disponibles : 192.168.9.1 à 192.168.9.254
 Gateway : 192.168.9.1
-Ventes et Développement Commercial
 
+Ventes et Développement Commercial
 Sous-réseau : 192.168.10.0/24    
 Adresses disponibles : 192.168.10.1 à 192.168.10.254   
 Gateway : 192.168.10.1   
+
 Adressage des équipements réseau (IPv4)   
 Points d'accès Wi-Fi : 192.168.0.3   
 
@@ -80,64 +83,64 @@ Serveur de fichiers : 192.168.0.6
 Pour l'adressage IPv6, nous allons utiliser une plage /48 et créer des sous-réseaux /64 pour chaque département.
 
 Réseau principal : 2001:db8:abcd::/48
-
 Routeur : 2001:db8:abcd::1
 Switch 1 : 2001:db8:abcd::2
 Sous-réseaux par département (IPv6)
-Communication
 
+Communication
 Sous-réseau : 2001:db8:abcd:1::/64
 Adresses disponibles : 2001:db8:abcd:1::1 à 2001:db8:abcd:1:ffff:ffff:ffff
 Gateway : 2001:db8:abcd:1::1
-Direction Financière
 
+Direction Financière
 Sous-réseau : 2001:db8:abcd:2::/64
 Adresses disponibles : 2001:db8:abcd:2::1 à 2001:db8:abcd:2:ffff:ffff:ffff
 Gateway : 2001:db8:abcd:2::1
-Direction Générale
 
+Direction Générale
 Sous-réseau : 2001:db8:abcd:3::/64
 Adresses disponibles : 2001:db8:abcd:3::1 à 2001:db8:abcd:3:ffff:ffff:ffff
 Gateway : 2001:db8:abcd:3::1
-Direction Marketing
 
+Direction Marketing
 Sous-réseau : 2001:db8:abcd:4::/64
 Adresses disponibles : 2001:db8:abcd:4::1 à 2001:db8:abcd:4:ffff:ffff:ffff
 Gateway : 2001:db8:abcd:4::1
-DSI
 
+DSI
 Sous-réseau : 2001:db8:abcd:5::/64
 Adresses disponibles : 2001:db8:abcd:5::1 à 2001:db8:abcd:5:ffff:ffff:ffff
 Gateway : 2001:db8:abcd:5::1
-R&D
 
+
+R&D
 Sous-réseau : 2001:db8:abcd:6::/64
 Adresses disponibles : 2001:db8:abcd:6::1 à 2001:db8:abcd:6:ffff:ffff:ffff
 Gateway : 2001:db8:abcd:6::1
-RH
 
+RH
 Sous-réseau : 2001:db8:abcd:7::/64
 Adresses disponibles : 2001:db8:abcd:7::1 à 2001:db8:abcd:7:ffff:ffff:ffff
 Gateway : 2001:db8:abcd:7::1
-Services Généraux
 
+Services Généraux
 Sous-réseau : 2001:db8:abcd:8::/64
 Adresses disponibles : 2001:db8:abcd:8::1 à 2001:db8:abcd:8:ffff:ffff:ffff
 Gateway : 2001:db8:abcd:8::1
-Service Juridique
 
+Service Juridique
 Sous-réseau : 2001:db8:abcd:9::/64
 Adresses disponibles : 2001:db8:abcd:9::1 à 2001:db8:abcd:9:ffff:ffff:ffff
 Gateway : 2001:db8:abcd:9::1
-Ventes et Développement Commercial
 
+Ventes et Développement Commercial
 Sous-réseau : 2001:db8:abcd:a::/64
 Adresses disponibles : 2001:db8:abcd:a::1 à 2001:db8:abcd:a:ffff:ffff:ffff
 Gateway : 2001:db8:abcd:a::1
 
 Configuration IP des matériels réseaux (IPv6) :
-
 Points d'accès Wi-Fi : 2001:db8:abcd::3
+
 Serveurs :
 Serveur DHCP : 2001:db8:abcd::4
 Serveur DNS : 2001:db8:abcd::5
