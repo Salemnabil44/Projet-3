@@ -50,8 +50,6 @@ Sous-réseau : 192.168.7.0/24
 Adresses disponibles : 192.168.7.1 à 192.168.7.254
 Gateway : 192.168.7.1
 
-
-
 Services Généraux
 Sous-réseau : 192.168.8.0/24
 Adresses disponibles : 192.168.8.1 à 192.168.8.254
