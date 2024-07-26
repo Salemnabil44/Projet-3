@@ -3,13 +3,9 @@
 Afin d'anticiper une expansion significative à l'avenir nous utiliseraons le réseau 192.168.0.0/16. Un réseau /16 offre 65 536 adresses (dont 65 534 utilisables), ce qui est largement suffisant pour couvrir les besoins actuels et futurs et nous allons attribuer des sous-réseaux à chaque département.
 
 Informations générales :
-
 Réseau principal : 192.168.0.0/16
 Total d'adresses disponibles : 65 534 (après exclusion de l'adresse de réseau et de diffusion)
-
-Sous-réseaux par département :
-
-Pour garantir une organisation claire et permettre une expansion future significative, nous allons utiliser des sous-réseaux /24, ce qui donne 256 adresses par sous-réseau (254 utilisables).
+Sous-réseaux par département : Pour garantir une organisation claire et permettre une expansion future significative, nous allons utiliser des sous-réseaux /24, ce qui donne 256 adresses par sous-réseau (254 utilisables).
 
 ### Plan d'adressage IP (IPv4)
 
