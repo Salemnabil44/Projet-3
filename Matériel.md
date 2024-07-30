@@ -24,3 +24,23 @@ Onduleurs (UPS) pour assurer l'alimentation continue des équipements critiques.
 
 
 Ce matériel couvre les besoins actuels et permet une future expansion du réseau, tout en garantissant une performance optimale et une gestion efficace du réseau.
+
+
+L'allocation de ressources (mémoire, stockage, CPU) pour vos différents serveurs dépend de plusieurs facteurs, notamment la charge prévue, le nombre d'utilisateurs et les services exécutés. Voici quelques recommandations générales :
+
+Serveur Windows Server 2022 GUI (AD-DS, DHCP, DNS)
+RAM: 8-16 Go (selon la taille de l'environnement et le nombre d'utilisateurs)
+CPU: 2-4 vCPU
+Stockage: 60-100 Go (système d'exploitation + données AD + logs)
+Serveur Windows Server 2022 Core (AD-DS)
+RAM: 4-8 Go (selon la taille de l'environnement et le nombre d'utilisateurs)
+CPU: 2 vCPU
+Stockage: 40-60 Go (système d'exploitation + données AD + logs)
+VM Serveur Linux Debian (membre du domaine, accessible en SSH)
+RAM: 2-4 Go (selon la charge de travail prévue)
+CPU: 1-2 vCPU
+Stockage: 20-40 Go (système d'exploitation + applications + données)
+VM Client Windows
+RAM: 4-8 Go (selon l'utilisation prévue)
+CPU: 2 vCPU
+Stockage: 40-60 Go (système d'exploitation + applications + données)
