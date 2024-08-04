@@ -1,0 +1,41 @@
+# Importer les données du fichier CSV
+$csvPath = "C:\Users\Administrateur\Downloads\Annexe.csv"
+$data = Import-Csv -Path $csvPath
+
+# Fonction pour créer une OU si elle n'existe pas déjà
+function Create-OUIfNotExists {
+    param (
+        [string]$OUName,
+        [string]$ParentOU
+    )
+    
+    # Construire le chemin LDAP complet pour l'OU
+    $ouPath = "OU=$OUName,$ParentOU"
+    
+    # Vérifier si l'OU existe
+    $ouExists = Get-ADOrganizationalUnit -Filter "DistinguishedName -eq '$ouPath'" -ErrorAction SilentlyContinue
+    
+    if (-not $ouExists) {
+        # Créer l'OU si elle n'existe pas
+        New-ADOrganizationalUnit -Name $OUName -Path $ParentOU
+        Write-Host "Création de l'OU: $OUName sous $ParentOU"
+    } else {
+        Write-Host "L'OU: $OUName existe déjà sous $ParentOU"
+    }
+}
+
+# Définir le chemin racine où les OU seront créées
+$rootPath = "DC=ekoloclast,DC=lan"  # Chemin LDAP de votre domaine
+
+# Parcourir chaque ligne du fichier CSV
+foreach ($entry in $data) {
+    $site = $entry.Site.ToUpper()
+    $departement = $entry.Département.ToUpper()
+    
+    # Créer l'OU pour le site
+    Create-OUIfNotExists -OUName $site -ParentOU $rootPath
+    
+    # Créer l'OU pour le département sous l'OU du site
+    $siteOUPath = "OU=$site,$rootPath"
+    Create-OUIfNotExists -OUName $departement -ParentOU $siteOUPath
+}
